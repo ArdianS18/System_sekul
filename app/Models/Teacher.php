@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -13,22 +12,22 @@ class Teacher extends Model
     use HasFactory;
 
     /**
-     * Get the classroom that owns the Teacher
+     * Get all of the teacher_subjects for the Teacher
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function classrooms(): HasMany
+    public function teacher_subjects(): HasMany
     {
-        return $this->hasMany(Classroom::class, 'foreign_key', 'other_key');
+        return $this->hasMany(Teacher_subject::class, 'foreign_key', 'local_key');
     }
 
     /**
-     * Get all of the subjects for the Teacher
+     * Get the classroom associated with the Teacher
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function subjects(): HasMany
+    public function classroom(): HasMany
     {
-        return $this->hasMany(Subject::class, 'foreign_key', 'local_key');
+        return $this->hasMany(Classroom::class, 'foreign_key', 'local_key');
     }
 }

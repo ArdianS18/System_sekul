@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class School_year extends Model
 {
@@ -13,10 +13,10 @@ class School_year extends Model
     /**
      * Get the classroom that owns the School_year
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function classroom(): BelongsTo
+    public function classrooms(): HasMany
     {
-        return $this->belongsTo(Classroom::class, 'foreign_key', 'other_key');
+        return $this->hasMany(Classroom::class, 'foreign_key', 'other_key');
     }
 }

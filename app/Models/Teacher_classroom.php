@@ -5,25 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Student_classroom extends Model
+class Teacher_classroom extends Model
 {
     use HasFactory;
 
-
     /**
-     * Get the student that owns the Student_classroom
+     * Get the teacher_subject that owns the teacher_classroom
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function student(): BelongsTo
+    public function teacher_subject(): BelongsTo
     {
-        return $this->belongsTo(Student::class, 'foreign_key', 'other_key');
+        return $this->belongsTo(Teacher_subject::class, 'foreign_key', 'other_key');
     }
 
     /**
-     * Get the classroom that owns the Student_classroom
+     * Get the classroom that owns the teacher_classroom
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

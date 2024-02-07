@@ -19,36 +19,37 @@ class Classroom extends Model
      */
     public function teacher(): BelongsTo
     {
-        return $this->belongsTo(Teacher::class, 'foreign_key', 'local_key');
+        return $this->belongsTo(Teacher::class);
     }
 
+
     /**
-     * Get the teacher_class that owns the Classroom
+     * Get all of the school_year for the Classroom
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function teacher_class(): BelongsTo
+    public function school_year(): BelongsTo
     {
-        return $this->belongsTo(Teacher_class::class, 'foreign_key', 'other_key');
+        return $this->belongsTo(School_year::class, 'foreign_key', 'local_key');
     }
 
     /**
-     * Get all of the student_classrooms for the Classroom
+     * Get the student_classroom that owns the Classroom
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function student_classrooms(): HasMany
     {
-        return $this->hasMany(Student_classroom::class, 'foreign_key', 'local_key');
+        return $this->hasMany(Student_classroom::class, 'foreign_key', 'other_key');
     }
 
     /**
-     * Get all of the school_year for the Classroom
+     * Get all of the teacher_classrooms for the Classroom
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function school_year(): HasMany
+    public function teacher_classrooms(): HasMany
     {
-        return $this->hasMany(School_year::class, 'foreign_key', 'local_key');
+        return $this->hasMany(Teacher_classroom::class, 'foreign_key', 'local_key');
     }
 }

@@ -12,22 +12,12 @@ class Subject extends Model
     use HasFactory;
 
     /**
-     * Get the teacher that owns the subject
+     * Get all of the teacher_subjects for the Subject
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function teacher(): BelongsTo
+    public function teacher_subjects(): HasMany
     {
-        return $this->belongsTo(Teacher::class, 'foreign_key', 'other_key');
-    }
-
-    /**
-     * Get all of the classrooms for the subject
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function student_classroom(): BelongsTo
-    {
-        return $this->belongsTo(Classroom::class, 'foreign_key', 'local_key');
+        return $this->hasMany(Teacher_subject::class, 'foreign_key', 'local_key');
     }
 }
